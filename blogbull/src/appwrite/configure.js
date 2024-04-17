@@ -102,6 +102,50 @@ export class Service{
 
      }
 
+
+
+    //  file upload services
+
+    async uploadFlie(file){
+        try {
+            return await this.bucket.createFile(
+                conf.appwriteBucketId,
+                ID.unique(),
+                file
+                
+            )
+ 
+         } catch (error) {
+            console.log('error in configure: uploadFlie',error);
+             return false
+         }
+
+     }
+
+     async deleteFlie(fileId){
+        try {
+            await this.bucket.deleteFile(
+                conf.appwriteBucketId,
+                fileId
+                
+            )
+            return true;
+ 
+         } catch (error) {
+            console.log('error in configure: deleteFlie',error);
+             return false
+         }
+
+     }
+
+    getFliePreview(fileId){
+        return this.bucket.getFilePreview(
+            conf.appwriteBucketId,
+            fileId
+        )
+
+     }
+
 }
 
 const service =new Service( );

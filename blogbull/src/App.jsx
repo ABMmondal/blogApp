@@ -1,7 +1,23 @@
+import { useState,useEffect } from 'react'
+import{useDispatch} from 'react-redux'
 import './App.css'
-import conf from './conf/conf';
+import authServices from './appwrite/auth'
+imp //next day
+
 function App() {
-  console.log(conf);
+  const  [loading,setloading] = useState(true)
+  const  dispatch = useDispatch()
+  
+  useEffect(() => {
+    authServices.getCurrentUser()
+    .then((userdata)=>{
+      if(userdata){
+        dispatch()
+      }
+    })
+    .finally()
+  }, [third])
+  
   return (
     <>
       <h1>hii</h1>

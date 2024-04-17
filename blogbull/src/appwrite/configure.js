@@ -132,7 +132,7 @@ export class Service{
             return true;
  
          } catch (error) {
-            console.log('error in configure: deleteFlie',error);
+            console.log('error in configure : deleteFlie',error);
              return false
          }
 

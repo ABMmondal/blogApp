@@ -1,8 +1,8 @@
 import { useState,useEffect } from 'react'
-import{useDispatch} from 'react-redux'
+import{useDispatch} from '@reduxjs/toolkit'
 import './App.css'
 import authServices from './appwrite/auth'
-imp //next day
+import {login,logout} from './store/authSlice'
 
 function App() {
   const  [loading,setloading] = useState(true)
@@ -12,17 +12,19 @@ function App() {
     authServices.getCurrentUser()
     .then((userdata)=>{
       if(userdata){
-        dispatch()
+        dispatch(login({userdata}))
+      }else{
+        dispatch(logout())
       }
     })
-    .finally()
-  }, [third])
+    .finally(()=>setloading(false))
+  }, [])
   
-  return (
-    <>
-      <h1>hii</h1>
-    </>
-  )
+  return !loading ? (
+    <div className=' min-h-screen'>
+
+    </div>
+  ): null
 }
 
 export default App
